@@ -22,15 +22,9 @@ function Blog({ posts, test }) {
 // This function gets called at build time
 export async function getStaticProps(args) {
   // Call an external API endpoint to get posts
-  // const data = blogHandler();
+  // this is calling /api/blog handler function
   const data = await fetch('http://localhost:3000/api/blog');
-  const postsData = await data.json();
-  console.log('data', postsData);
-
-  const posts = await Promise.resolve([
-    { id: 1, title: "Post 1" },
-    { id: 2, title: "Post 2" },
-  ]);
+  const posts = await data.json();
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time

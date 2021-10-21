@@ -10,11 +10,8 @@ function Post({ post }) {
 // This function gets called at build time
 export async function getStaticPaths(args) {
   // Call an external API endpoint to get posts
-  console.log('args', args)
-  const posts = await Promise.resolve([
-    { id: 1, title: "Post 1" },
-    { id: 2, title: "Post 2" },
-  ]);
+  const data = await fetch('http://localhost:3000/api/blog');
+  const posts = await data.json();
 
   // Get the paths we want to pre-render based on posts
   const paths = posts.map((post) => ({
@@ -37,6 +34,14 @@ export async function getStaticProps({ params }) {
       2: {
         title: "Post 2",
         description: "My brilliant post 2",
+      },
+      3: {
+        title: "Post 3",
+        description: "My brilliant post 3",
+      },
+      4: {
+        title: "Post 4",
+        description: "My brilliant post 4",
       },
     };
     return posts[id];
