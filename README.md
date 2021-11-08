@@ -1,34 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Newrelic NextJs Integration
 
-First, run the development server:
+### New Relic Browser Agent Integration
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Log in to your New Relic account (if you don't have it yet, register for free [here](https://newrelic.com/signup))
+2. Go to [https://one.newrelic.com](https://one.newrelic.com) and (in the top right corner) select *Add more data*
+3. Select *New Relic Browser* from *Browser metrics*
+4. Tick *Copy/Paste Javascript code*, enter your app name, and click *Enable*
+5. You should now have the New Relic Browser snippet available to you which should look something like this:
+   <img width="909" alt="Screenshot 2021-11-08 at 14 45 37" src="https://user-images.githubusercontent.com/6328360/140762690-67fba0a9-6a9d-4959-9516-75fef61ed3e8.png">
+6. Copy/paste the entire snippet to a `.js` file in your project (you can find the example in this repo under `/newrelic/newrelic-browser-agent.js` - see [here](newrelic-nextjs-integration/blob/main/newrelic/newrelic-browser-agent.js))
+7. **Important** - modify the script:
+   1. remove `<script>` tags from the beginning and the end of the script
+   2. replace all "\\" with "\\\\" - escape the escape character (credit to @petvas)
+8. Create a new React Component and import the New Relic Browser agent to the file
+   1. see the example [here](newrelic-nextjs-integration/blob/main/components/NewRelicSnippet.tsx) - you can simply copy/paste it (remember to change the path to your New Relic Browser agent script if it differs)
+9. Add the newly created component (in this case `NewRelicSnippet`) to the `Head` of your app entry point, usually `_app.tsx` under `pages` directory
+   1. see how to do it [here](https://github.com/matewilk/newrelic-nextjs-integration/blob/main/pages/_app.tsx#L12)
+10. Congratulations, you have now successfully integrated New Relic Browser agent with NextJs framework!
