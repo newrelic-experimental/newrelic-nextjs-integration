@@ -13,7 +13,6 @@ Error.getInitialProps = ({ res, err }) => {
     const newrelic = require('newrelic');
     newrelic.noticeError(err);
   } else {
-    // @ts-ignore
     window.newrelic.noticeError(err);
   }
 
