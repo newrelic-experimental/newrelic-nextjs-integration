@@ -1,16 +1,25 @@
+import Link from "next/link";
+import { logger } from "../../components/Logger";
+import Layout from "../../components/Layout";
+
 function Post({ post }) {
   return (
-    <>
+    <Layout>
+      <p>
+        <Link href="/blog">
+          <a>Return to Blog</a>
+        </Link>
+      </p>
       <h3>{post.title}</h3>
       <p>{post.description}</p>
-    </>
+    </Layout>
   );
 }
 
 // This function gets called at build time
 export async function getStaticPaths(args) {
   // Call an external API endpoint to get posts
-  const data = await fetch('http://localhost:3000/api/blog');
+  const data = await fetch("http://localhost:3000/api/blog");
   const posts = await data.json();
 
   // Get the paths we want to pre-render based on posts
@@ -46,6 +55,8 @@ export async function getStaticProps({ params }) {
     };
     return posts[id];
   };
+  logger.info("Getting post id", { postId: params.id });
+
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   const post = await Promise.resolve(getPostDetails(params.id));

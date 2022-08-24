@@ -1,10 +1,16 @@
 import Link from "next/link";
+import blogHandler from "./api/blog";
 
-import blogHandler from './api/blog';
+import Layout from "../components/Layout";
 
 function Blog({ posts, test }) {
   return (
-    <>
+    <Layout>
+      <p>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+      </p>
       <div>{test}</div>
       <ul>
         {posts.map((post) => (
@@ -15,7 +21,7 @@ function Blog({ posts, test }) {
           </li>
         ))}
       </ul>
-    </>
+    </Layout>
   );
 }
 
@@ -23,7 +29,7 @@ function Blog({ posts, test }) {
 export async function getStaticProps(args) {
   // Call an external API endpoint to get posts
   // this is calling /api/blog handler function
-  const data = await fetch('http://localhost:3000/api/blog');
+  const data = await fetch("http://localhost:3000/api/blog");
   const posts = await data.json();
 
   // By returning { props: { posts } }, the Blog component

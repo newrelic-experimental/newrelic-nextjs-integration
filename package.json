@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node --project tsconfig.server.json server/index.ts",
-    "dev:debug": "NODE_OPTIONS='--inspect' ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "NODE_OPTIONS='-r @newrelic/next' next",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_OPTIONS='-r @newrelic/next' next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@newrelic/next": "^0.3.0",
     "express": "^4.17.1",
-    "newrelic": "^8.5.0",
-    "next": "11.1.2",
+    "newrelic": "^9.0.0",
+    "next": "^11.1.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "winston": "^3.8.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

@@ -11,12 +11,12 @@ export default async function handler(
   res: NextApiResponse<Data[]>
 ) {
   // @ts-ignore
-  await req.newrelic.addCustomAttributes({
-    path: "api/blog",
-    value: "12345",
-    custom: "test",
-    custom2: "test2",
-  });
+  // await req.newrelic.addCustomAttributes({
+  //   path: "api/blog",
+  //   value: "12345",
+  //   custom: "test",
+  //   custom2: "test2",
+  // });
   res.status(200).json([
     { id: 1, title: "Post 1" },
     { id: 2, title: "Post 2" },

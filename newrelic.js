@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 /**
  * New Relic agent configuration.
  *
@@ -9,11 +9,11 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['newrelic-nextjs-integration'],
+  app_name: ["newrelic-nextjs-integration"],
   /**
    * Your New Relic license key.
    */
-  license_key: '',
+  license_key: "",
   /**
    * This setting controls distributed tracing.
    * Distributed tracing lets you see the path that a request takes through your
@@ -28,7 +28,7 @@ exports.config = {
      *
      * @env NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
      */
-    enabled: true
+    enabled: true,
   },
   logging: {
     /**
@@ -36,7 +36,12 @@ exports.config = {
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level: 'info'
+    level: "info",
+  },
+  application_logging: {
+    forwarding: {
+      enabled: true,
+    },
   },
   /**
    * When true, all request headers except for those listed in attributes.exclude
@@ -54,16 +59,16 @@ exports.config = {
      * @env NEW_RELIC_ATTRIBUTES_EXCLUDE
      */
     exclude: [
-      'request.headers.cookie',
-      'request.headers.authorization',
-      'request.headers.proxyAuthorization',
-      'request.headers.setCookie*',
-      'request.headers.x*',
-      'response.headers.cookie',
-      'response.headers.authorization',
-      'response.headers.proxyAuthorization',
-      'response.headers.setCookie*',
-      'response.headers.x*'
-    ]
-  }
-}
+      "request.headers.cookie",
+      "request.headers.authorization",
+      "request.headers.proxyAuthorization",
+      "request.headers.setCookie*",
+      "request.headers.x*",
+      "response.headers.cookie",
+      "response.headers.authorization",
+      "response.headers.proxyAuthorization",
+      "response.headers.setCookie*",
+      "response.headers.x*",
+    ],
+  },
+};
