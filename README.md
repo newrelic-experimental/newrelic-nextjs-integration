@@ -9,13 +9,13 @@ This repo is a sample repo containing examples of integration Next.js framework 
 
 For a quick overview watch the following video explaning how to achieve Full Stack Observabitlity with Next.js + New Relic.
 
-{{video link here}}
+{{video link here - coming sooon}}
 
 ## Technical guide
 
 For more techincal explanation read the folloing blog post
 
-{{blog post link here}}
+[How to monitor a Next.js application](https://newrelic.com/blog/how-to-relic/nextjs-monitor-application-data)
 
 ## How to run
 
