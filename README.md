@@ -4,16 +4,16 @@
 
 ## Overview
 
-This repo is a sample repo containing examples of integration Next.js framework with New Relic platform.
+This is a sample repo showing how to integrate Next.js with the New Relic observability platform
 
 
-For a quick overview watch the following video explaning how to achieve Full Stack Observabitlity with Next.js + New Relic.
+**For a quick overview watch the following video explaning benefits of full stack observabitlity with New Relic and Next.js.**
 
-{{video link here - coming sooon}}
+[NextJs + New Relic - Full stack observability](https://www.youtube.com/watch?v=kNU9erBezdc)
 
 ## Technical guide
 
-For more techincal explanation read the folloing blog post
+**For techincal explanation and guide read the folloing blog post**
 
 [How to monitor a Next.js application](https://newrelic.com/blog/how-to-relic/nextjs-monitor-application-data)
 
@@ -32,9 +32,17 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-
 ## Learn More
 
+### New Relic
+
+To learn more about [New Relic](https://newrelic.com/), take a look athe the following resources:
+
+- [New Relic Documentation](https://docs.newrelic.com/) - learn about New Relic features
+- Check out the [Node.js integration page on GitHub](https://github.com/newrelic-experimental/newrelic-nextjs-integration).
+- [Sign up for a free New Relic account](https://newrelic.com/signup). Your free account includes 100 GB/month of free data ingest, one free full-access user, and unlimited free basic users.
+
+### Next.js
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
@@ -61,4 +69,4 @@ If you believe you have found a security vulnerability in this project or any of
 
 If you would like to contribute to this project, review [these guidelines](./CONTRIBUTING.md).
 
-To all contributors, we thank you!  Without your contribution, this project would not be what it is today.  We also host a community project page dedicated to [Project Name](<LINK TO https://opensource.newrelic.com/projects/... PAGE>).
+To all contributors, we thank you!  Without your contribution, this project would not be what it is today.
