@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  nextjs:
+    container_name: nextjs_app
+    hostname: nextjs_host
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/usr/src/nextjs"
