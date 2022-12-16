@@ -2,11 +2,9 @@ version: "3"
 
 services:
   nextjs:
-    container_name: nextjs_app
-    hostname: nextjs_host
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    container_name: nextjs-clm-demo 
+    build: .
+    env_file: .env
     ports:
       - "3000:3000"
     volumes:
