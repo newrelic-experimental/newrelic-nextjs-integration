@@ -20,9 +20,6 @@ class MyDocument extends Document {
       hasToRemoveScriptWrapper: true,
     });
 
-    newrelic.setTransactionName("App started transaction");
-    newrelic.addCustomAttribute("AppAttribute", "NextJs New Relic attribute");
-
     logger.info("NextJs New Relic redirecting to a page", {
       application: "NextJs NewRelic app logging",
       test: "Testing logging with Winston",
