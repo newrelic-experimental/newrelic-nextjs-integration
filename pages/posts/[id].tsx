@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { logger } from ""../../components/Logger";
+import { logger } from "../../components/Logger";
 import Layout from "../../components/Layout";
 import * as http from "http";
 
@@ -19,22 +19,24 @@ function Post({ post }) {
 
 export async function getServerSideProps({ params, req }) {
   const { id } = params;
-  const host = req.headers.host
+  const host = req.headers.host;
   // Call an external API endpoint to get posts
   // this is calling /api/blog handler function
   // using http because NR agent cannot propagate through global fetch just yet
-  const posts: Array<{ id, title }> = await new Promise((resolve, reject) => {
-    http.get(`http://${host}/api/blog`, (res) => {
-      let body = ""
-      res.on("data", (data) => (body += data.toString(("utf8"))))
-      res.on("end", () => {
-        resolve(JSON.parse(body))
+  const posts: Array<{ id; title }> = await new Promise((resolve, reject) => {
+    http
+      .get(`http://${host}/api/blog`, (res) => {
+        let body = "";
+        res.on("data", (data) => (body += data.toString("utf8")));
+        res.on("end", () => {
+          resolve(JSON.parse(body));
+        });
       })
-    }).on("error", reject)
+      .on("error", reject);
   });
 
   logger.info("Getting post id", { postId: id });
-  const [ post ] = posts.filter((p) => p.id === parseInt(id, 10))
+  const [post] = posts.filter((p) => p.id === parseInt(id, 10));
 
   return {
     props: {
