@@ -1,7 +1,7 @@
 import Link from "next/link";
-import blogHandler from "./api/blog";
 
 import Layout from "../components/Layout";
+import * as http from 'http';
 
 function Blog({ posts, test }) {
   return (
@@ -25,15 +25,21 @@ function Blog({ posts, test }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticProps(args) {
+export async function getServerSideProps({ req }) {
+  const host = req.headers.host
   // Call an external API endpoint to get posts
   // this is calling /api/blog handler function
-  const data = await fetch("http://localhost:3000/api/blog");
-  const posts = await data.json();
+  // using http because NR agent cannot propagate through global fetch just yet
+  const posts: Array<{ id, title }> = await new Promise((resolve, reject) => {
+    http.get(`http://${host}/api/blog`, (res) => {
+      let body = ''
+      res.on('data', (data) => (body += data.toString(('utf8'))))
+      res.on('end', () => {
+        resolve(JSON.parse(body))
+      })
+    }).on('error', reject)
+  });
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
   return {
     props: {
       posts,

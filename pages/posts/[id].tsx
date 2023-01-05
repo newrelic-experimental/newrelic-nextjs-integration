@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { logger } from "../../components/Logger";
+import { logger } from ""../../components/Logger";
 import Layout from "../../components/Layout";
+import * as http from "http";
 
 function Post({ post }) {
   return (
@@ -16,53 +17,30 @@ function Post({ post }) {
   );
 }
 
-// This function gets called at build time
-export async function getStaticPaths(args) {
+export async function getServerSideProps({ params, req }) {
+  const { id } = params;
+  const host = req.headers.host
   // Call an external API endpoint to get posts
-  const data = await fetch("http://localhost:3000/api/blog");
-  const posts = await data.json();
+  // this is calling /api/blog handler function
+  // using http because NR agent cannot propagate through global fetch just yet
+  const posts: Array<{ id, title }> = await new Promise((resolve, reject) => {
+    http.get(`http://${host}/api/blog`, (res) => {
+      let body = ""
+      res.on("data", (data) => (body += data.toString(("utf8"))))
+      res.on("end", () => {
+        resolve(JSON.parse(body))
+      })
+    }).on("error", reject)
+  });
 
-  // Get the paths we want to pre-render based on posts
-  const paths = posts.map((post) => ({
-    params: { id: post.id.toString() },
-  }));
+  logger.info("Getting post id", { postId: id });
+  const [ post ] = posts.filter((p) => p.id === parseInt(id, 10))
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
-}
-
-// This also gets called at build time
-export async function getStaticProps({ params }) {
-  const getPostDetails = (id) => {
-    const posts = {
-      1: {
-        title: "Post 1",
-        description: "My brilliant post 1",
-      },
-      2: {
-        title: "Post 2",
-        description: "My brilliant post 2",
-      },
-      3: {
-        title: "Post 3",
-        description: "My brilliant post 3",
-      },
-      4: {
-        title: "Post 4",
-        description: "My brilliant post 4",
-      },
-    };
-    return posts[id];
+  return {
+    props: {
+      post,
+    },
   };
-  logger.info("Getting post id", { postId: params.id });
-
-  // params contains the post `id`.
-  // If the route is like /posts/1, then params.id is 1
-  const post = await Promise.resolve(getPostDetails(params.id));
-
-  // Pass post data to the page via props
-  return { props: { post } };
 }
 
 export default Post;

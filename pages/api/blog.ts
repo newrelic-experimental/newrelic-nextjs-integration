@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 type Data = {
   id: number;
   title: string;
+  description: string;
 };
 
 export default async function handler(
@@ -18,9 +19,9 @@ export default async function handler(
   //   custom2: "test2",
   // });
   res.status(200).json([
-    { id: 1, title: "Post 1" },
-    { id: 2, title: "Post 2" },
-    { id: 3, title: "Post 3" },
-    { id: 4, title: "Post 4" },
+    { id: 1, title: "Post 1", description: "Post 1" },
+    { id: 2, title: "Post 2", description: "Post 2" },
+    { id: 3, title: "Post 3", description: "Post 3" },
+    { id: 4, title: "Post 4", description: "Post 4" },
   ]);
 }
