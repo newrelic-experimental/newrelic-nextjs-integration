@@ -16,6 +16,10 @@ class MyDocument extends Document {
   ): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
 
+    await new Promise((resolve) => {
+      newrelic.agent.on('connected', resolve)
+    })
+
     const browserTimingHeader = newrelic.getBrowserTimingHeader({
       hasToRemoveScriptWrapper: true,
     });

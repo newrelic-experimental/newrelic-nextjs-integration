@@ -3,7 +3,7 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import * as http from 'http';
 
-function Blog({ posts, test }) {
+function Blog({ posts }) {
   return (
     <Layout>
       <p>
@@ -11,7 +11,6 @@ function Blog({ posts, test }) {
           <a>Home</a>
         </Link>
       </p>
-      <div>{test}</div>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
