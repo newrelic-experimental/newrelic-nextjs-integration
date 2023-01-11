@@ -29,6 +29,7 @@ class MyDocument extends Document {
 
     const browserTimingHeader = newrelic.getBrowserTimingHeader({
       hasToRemoveScriptWrapper: true,
+      allowTransactionlessInjection: true
     });
 
 
