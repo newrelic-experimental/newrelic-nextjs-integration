@@ -1,30 +1,41 @@
-import type { NextPage } from "next";
 import Link from "next/link";
 
 import Layout from "../components/Layout";
+const LINKS = [
+  {
+    name: "Home",
+    href: "/"
+  },
+  {
+    name: "Blog",
+    href: "/blog"
+  },
+  {
+    name: "About",
+    href: "/about"
+  }
+];
 
-const Home: NextPage = () => {
+function Home({ links }) { 
   return (
     <Layout>
-      <p>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </p>
-
-      <p>
-        <Link href="/blog">
-          <a>Blog</a>
-        </Link>
-      </p>
-
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
+      {links.map((link) => (
+        <p key={link.name}>
+          <Link href={link.href}>
+            <a>{link.name}</a>
+          </Link>
+        </p>
+      ))}
     </Layout>
   );
+};
+
+export async function getStaticProps() {
+  return { 
+    props: {
+      links: LINKS
+    }
+  }
 };
 
 export default Home;
