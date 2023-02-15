@@ -10,10 +10,14 @@ import Document, {
 
 import { logger } from "../components/Logger";
 
-class MyDocument extends Document {
+type NewRelicProps = {
+  browserTimingHeader: string;
+}
+
+class MyDocument extends Document<NewRelicProps> {
   static async getInitialProps(
     ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
+  ): Promise<DocumentInitialProps & NewRelicProps> {
     const initialProps = await Document.getInitialProps(ctx);
 
     /**
@@ -41,7 +45,6 @@ class MyDocument extends Document {
 
     return {
       ...initialProps,
-      // @ts-ignore
       browserTimingHeader,
     };
   }
@@ -52,7 +55,6 @@ class MyDocument extends Document {
         <Head>
           <script
             type="text/javascript"
-            // @ts-ignore
             dangerouslySetInnerHTML={{ __html: this.props.browserTimingHeader }}
           />
         </Head>
