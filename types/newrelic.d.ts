@@ -15,4 +15,9 @@ declare module "newrelic" {
   export function noticeError(
     error: (Error & { statusCode?: number | undefined }) | null | undefined
   ): void;
+  export function getBrowserTimingHeader(options?: {
+    nonce?: string;
+    hasToRemoveScriptWrapper?: boolean;
+    allowTransactionlessInjection?: boolean;
+  }): string;
 }
