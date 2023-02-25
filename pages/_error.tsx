@@ -1,4 +1,10 @@
-function Error({ statusCode }) {
+import { NextPage, NextPageContext } from "next";
+
+type Props = {
+  statusCode: number | undefined;
+};
+
+const Error: NextPage<Props> = ({ statusCode }) => {
   return (
     <p>
       {statusCode
@@ -6,14 +12,13 @@ function Error({ statusCode }) {
         : "An error occurred on client"}
     </p>
   );
-}
+};
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
   if (typeof window == "undefined") {
     const newrelic = require("newrelic");
     newrelic.noticeError(err);
   } else {
-    // @ts-ignore
     window.newrelic.noticeError(err);
   }
 

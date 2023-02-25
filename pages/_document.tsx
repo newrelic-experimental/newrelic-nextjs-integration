@@ -12,7 +12,7 @@ import { logger } from "../components/Logger";
 
 type NewRelicProps = {
   browserTimingHeader: string;
-}
+};
 
 class MyDocument extends Document<NewRelicProps> {
   static async getInitialProps(
@@ -27,15 +27,14 @@ class MyDocument extends Document<NewRelicProps> {
      */
     if (!newrelic.agent.collector.isConnected()) {
       await new Promise((resolve) => {
-        newrelic.agent.on('connected', resolve)
-      })
+        newrelic.agent.on("connected", resolve);
+      });
     }
 
     const browserTimingHeader = newrelic.getBrowserTimingHeader({
       hasToRemoveScriptWrapper: true,
-      allowTransactionlessInjection: true
+      allowTransactionlessInjection: true,
     });
-
 
     logger.info("NextJs New Relic redirecting to a page", {
       application: "NextJs NewRelic app logging",
