@@ -8,14 +8,14 @@ function Blog({ posts }) {
     <Layout>
       <p>
         <Link href="/">
-          <a>Home</a>
+          Home
         </Link>
       </p>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
             <Link href={`/posts/${post.id}`} as={`/posts/${post.id}`}>
-              <a>{post.title}</a>
+              {post.title}
             </Link>
           </li>
         ))}

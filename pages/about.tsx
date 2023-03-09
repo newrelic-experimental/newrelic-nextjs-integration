@@ -7,7 +7,7 @@ function About() {
     <Layout>
       <p>
         <Link href="/">
-          <a>Home</a>
+          Home
         </Link>
       </p>
       <p>I am About page</p>

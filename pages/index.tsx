@@ -22,7 +22,7 @@ function Home({ links }) {
       {links.map((link) => (
         <p key={link.name}>
           <Link href={link.href}>
-            <a>{link.name}</a>
+            {link.name}
           </Link>
         </p>
       ))}

@@ -8,7 +8,7 @@ function Post({ post }) {
     <Layout>
       <p>
         <Link href="/blog">
-          <a>Return to Blog</a>
+          Return to Blog
         </Link>
       </p>
       <h3>{post.title}</h3>
