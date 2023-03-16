@@ -1,4 +1,4 @@
-const winston = require("winston");
+import winston from "winston";
 
 /* Example logger with custom formatter
 https://github.com/winstonjs/winston#combining-formats

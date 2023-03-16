@@ -14,9 +14,11 @@ const Error: NextPage<Props> = ({ statusCode }) => {
   );
 };
 
-Error.getInitialProps = ({ res, err }: NextPageContext) => {
+Error.getInitialProps = async ({ res, err }: NextPageContext) => {
   if (typeof window == "undefined") {
-    const newrelic = require("newrelic");
+    // use dynamic import to avoid typescript error
+    // https://2ality.com/2017/01/import-operator.html
+    const newrelic = await import("newrelic");
     newrelic.noticeError(err);
   } else {
     window.newrelic.noticeError(err);
